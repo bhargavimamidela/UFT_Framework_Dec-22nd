@@ -1,0 +1,890 @@
+﻿<?xml version="1.0"?>
+<!DOCTYPE Report
+[
+<!ELEMENT Report (General ,(Doc|BPT)) >
+<!ATTLIST Report ver CDATA #REQUIRED tmZone CDATA #REQUIRED>
+
+<!ELEMENT General ( DocLocation ) >
+<!ATTLIST General productName CDATA #REQUIRED productVer CDATA #REQUIRED os CDATA #REQUIRED host CDATA #REQUIRED qcserver CDATA #IMPLIED qcproject CDATA #IMPLIED SolManSolutionId CDATA #IMPLIED SolManProjectId CDATA #IMPLIED SolManTestPlanId CDATA #IMPLIED SolManTestPackageId CDATA #IMPLIED SolManUserInfoData CDATA #IMPLIED  >
+
+<!ELEMENT BPT (DName,Res,DVer?,TSet?,TInst?,NodeArgs,AdditionalInfo*,Doc*) >
+<!ATTLIST BPT rID ID #REQUIRED >
+
+<!ELEMENT Doc (DName,ConfName?,Res,DVer?,TSet?,TInst?,RunType?,DT?,AdditionalInfo*,Step*,DIter*,Step*,Action*,Doc*,Summary?,TestMaintenanceSummary*,NodeArgs?) >
+<!ATTLIST Doc rID ID #REQUIRED type (Test|BC|BPTWrapperTest|Flow|Group|Action) "Test" productName CDATA #REQUIRED BCIter CDATA #IMPLIED >
+
+<!ELEMENT RunType ( #PCDATA )>
+<!ATTLIST RunType fmStep (False|True) "False" batch (False|True) "False" upDesc (False|True) "False" upChk (False|True) "False" upAS (False|True) "False">
+
+<!ELEMENT DName ( #PCDATA ) >
+
+<!ELEMENT ConfName ( #PCDATA ) >
+
+<!ELEMENT Res ( #PCDATA ) >
+
+<!ELEMENT AdditionalInfo (AdditionalDataName,AdditionalDataValue ) >
+
+<!ELEMENT AdditionalDataName ( #PCDATA ) >
+
+<!ELEMENT AdditionalDataValue ( #PCDATA ) >
+
+<!ELEMENT DVer ( #PCDATA ) >
+
+<!ELEMENT TSet ( #PCDATA ) >
+
+<!ELEMENT TInst ( #PCDATA ) >
+
+<!ELEMENT DIter (Step*,Action+,Summary?,NodeArgs)>
+<!ATTLIST DIter rID ID #REQUIRED iterID CDATA #REQUIRED>
+
+<!ELEMENT DocLocation ( #PCDATA )>
+
+<!ELEMENT Action (AName,AIter*,(Step|HtmlStep|Action)*, Summary,ActionMaintenanceSummary*, NodeArgs ) >
+<!ATTLIST Action rID ID #REQUIRED>
+
+<!ELEMENT AIter ((Step|HtmlStep|Action)*,DataMapping?, Summary?,NodeArgs) >
+<!ATTLIST AIter rID ID #REQUIRED iterID CDATA #REQUIRED isCountable (False|True) "False" >
+
+<!ELEMENT AName ( #PCDATA ) >
+
+<!ELEMENT TestMaintenanceSummary (ActionMaintenanceSummary*) >
+<!ATTLIST TestMaintenanceSummary ObjectsAdded CDATA #REQUIRED ObjectsUpdated CDATA #REQUIRED StepsUpdated CDATA #REQUIRED StepsComments CDATA #REQUIRED><!ELEMENT ActionMaintenanceSummary (ObjectChange* ) >
+<!ATTLIST ActionMaintenanceSummary Action CDATA #REQUIRED Objects CDATA #REQUIRED Updated CDATA #REQUIRED LinesTotal CDATA #REQUIRED Added CDATA #REQUIRED LinesUpdated CDATA #REQUIRED>
+
+<!ELEMENT ObjectChange  (Hierarchy, PropertyChangeList* ) >
+<!ATTLIST ObjectChange Operation CDATA #IMPLIED OriginalRepository CDATA #IMPLIED>
+
+<!ELEMENT PropertyChangeList (PropertyDef*) >
+
+<!ELEMENT PropertyDef (OriginalValue, NewValue) >
+<!ATTLIST PropertyDef PropName CDATA #REQUIRED OriginRegularExpression (True|False) "False" NewRegularExpression (True|False) "False" AddedProperty (True|False) "False" >
+
+<!ELEMENT OriginalValue ( #PCDATA )>
+
+<!ELEMENT NewValue ( #PCDATA )>
+
+<!ELEMENT Hierarchy  (ObjectName, Hierarchy*) >
+<!ATTLIST Hierarchy MicClass CDATA #REQUIRED>
+
+<!ELEMENT ObjectName  ( #PCDATA ) >
+
+<!ELEMENT Step (Obj,Details,Time,TimeTick* ,(Step|HtmlStep|Doc)*, DataMapping?, NodeArgs) >
+<!ATTLIST Step rID ID #REQUIRED retval CDATA #IMPLIED>
+
+<!ELEMENT HtmlStep (HTML,TimeTick*,(Step|HtmlStep|Doc)*,NodeArgs) >
+<!ATTLIST HtmlStep rID ID #REQUIRED >
+
+<!ELEMENT Obj ( #PCDATA ) >
+<!ATTLIST Obj plainTxt (False|True) "True">
+
+<!ELEMENT Details ( #PCDATA ) >
+<!ATTLIST Details plainTxt (False|True) "True">
+
+<!ELEMENT Time ( #PCDATA ) >
+
+<!ELEMENT HTML ( #PCDATA ) >
+
+<!ELEMENT Disp ( #PCDATA ) >
+
+<!ELEMENT TimeTick ( #PCDATA ) >
+
+<!ELEMENT DataMapping ( DataMappedItem* )>
+<!ELEMENT DataMappedItem EMPTY >
+<!ATTLIST DataMappedItem dsName CDATA #REQUIRED >
+<!ATTLIST DataMappedItem rowId CDATA #REQUIRED >
+
+<!ELEMENT NodeArgs (Disp,TopPane?,BtmPane?,ExtendedInfo? )>
+<!ATTLIST NodeArgs eType CDATA #REQUIRED icon CDATA #REQUIRED nRep CDATA #REQUIRED UserNote CDATA #IMPLIED filter (False|True) "True">
+<!ATTLIST NodeArgs status (Passed|Failed|Done|Warning|Information) "Done">
+<!ATTLIST NodeArgs iconSel CDATA #IMPLIED nType CDATA #IMPLIED MovieMarker CDATA "">
+<!ATTLIST NodeArgs Source CDATA #IMPLIED SourceLine CDATA #IMPLIED StepFlowItemKey CDATA #IMPLIED >
+
+<!ELEMENT TopPane (Path)>
+
+<!ELEMENT BtmPane ( (Path|WR)?,ASHilite?)>
+<!ATTLIST BtmPane vType CDATA "HTML">
+
+<!ELEMENT Path ( #PCDATA ) >
+
+<!ELEMENT ASHilite ( #PCDATA ) >
+
+<!ELEMENT WR ( #PCDATA ) >
+
+<!ELEMENT ExtendedInfo ( StepData ) >
+
+<!ATTLIST ExtendedInfo StepType CDATA #REQUIRED>
+<!ELEMENT DT (NodeArgs) >
+<!ATTLIST DT rID ID #REQUIRED>
+
+<!ELEMENT Summary (Param*)>
+<!ATTLIST Summary sTime CDATA #IMPLIED eTime CDATA #IMPLIED passed CDATA #IMPLIED failed CDATA #IMPLIED warnings CDATA #IMPLIED retval CDATA #IMPLIED stopped (False|True) "False" >
+
+<!ELEMENT Param (ParamName,ParamVal)+ >
+<!ATTLIST Param paramInOut (In|Out) "In">
+
+<!ELEMENT ParamName ( #PCDATA ) >
+
+<!ELEMENT ParamVal ( #PCDATA ) >
+
+]
+>
+<Report ver="2.0" tmZone="India Standard Time">
+<General productName="HPE Unified Functional Testing" productVer="14.03" os="" host="LIN33004137"><DocLocation><![CDATA[C:\framework\QTP-Hybrid-Framework\QTP-Hybrid-Framework\TestCases\payback_1]]></DocLocation></General>
+<Doc rID="T1"   productName= "HPE Unified Functional Testing"  >
+<DName><![CDATA[payback_1]]></DName>
+<Res><![CDATA[Res25]]></Res>
+<DT rID="T2">
+<NodeArgs eType="Table" icon="2" nRep="4" filter="False" >
+<Disp><![CDATA[Run-Time Data Table]]></Disp>
+<BtmPane vType="Table" >
+<Path><![CDATA[Default.xls]]></Path>
+</BtmPane>
+</NodeArgs>
+</DT>
+<DIter rID="T3" iterID="1" >
+<Step rID="T4">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:24]]></Time>
+<TimeTick>1676353284</TimeTick>
+<Step rID="T5">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser.Navigate]]></Obj>
+<Details plainTxt="False" ><![CDATA[Navigate to payback.in]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:24]]></Time>
+<TimeTick>1676353284</TimeTick>
+<NodeArgs eType="Replay" icon="4" nRep="9" Source="Action0" SourceLine="-1" >
+<Disp><![CDATA[StartUp Browser.Navigate]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T6">
+<Obj plainTxt="False" ><![CDATA[StartUp Browser.Sync]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:26]]></Time>
+<TimeTick>1676353286</TimeTick>
+<NodeArgs eType="Replay" icon="4" nRep="11" Source="Action0" SourceLine="-1" >
+<Disp><![CDATA[StartUp Browser.Sync]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="8" Source="Action0" SourceLine="-1" >
+<Disp><![CDATA[StartUp Browser]]></Disp>
+</NodeArgs>
+</Step>
+<Action rID="T7">
+<AName><![CDATA[Action1]]></AName>
+<Step rID="T8">
+<Obj plainTxt="False" ><![CDATA[Largest Multi-brand Loyalty_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:27]]></Time>
+<TimeTick>1676353287</TimeTick>
+<Step rID="T9">
+<Obj plainTxt="False" ><![CDATA[Largest Multi-brand Loyalty]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:27]]></Time>
+<TimeTick>1676353287</TimeTick>
+<Step rID="T10">
+<Obj plainTxt="False" ><![CDATA[Login.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:27]]></Time>
+<TimeTick>1676353287</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="17" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[Login.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="16" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[Largest Multi-brand Loyalty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T11">
+<Obj plainTxt="False" ><![CDATA[Login to your PAYBACK]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:28]]></Time>
+<TimeTick>1676353288</TimeTick>
+<Step rID="T12">
+<Obj plainTxt="False" ><![CDATA[card_number.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7995759682"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:28]]></Time>
+<TimeTick>1676353288</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="21" Source="Action1" SourceLine="2" >
+<Disp><![CDATA[card_number.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T13">
+<Obj plainTxt="False" ><![CDATA[pin_number.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["63eb074f86ee1193e3996159b654"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:29]]></Time>
+<TimeTick>1676353289</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="24" Source="Action1" SourceLine="3" >
+<Disp><![CDATA[pin_number.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T14">
+<Obj plainTxt="False" ><![CDATA[LOGIN.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:29]]></Time>
+<TimeTick>1676353289</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="27" Source="Action1" SourceLine="5" >
+<Disp><![CDATA[LOGIN.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="20" Source="Action1" SourceLine="2" >
+<Disp><![CDATA[Login to your PAYBACK]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T15">
+<Obj plainTxt="False" ><![CDATA[Largest Multi-brand Loyalty]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:29]]></Time>
+<TimeTick>1676353289</TimeTick>
+<Step rID="T16">
+<Obj plainTxt="False" ><![CDATA[Customer Care.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:29]]></Time>
+<TimeTick>1676353289</TimeTick>
+<NodeArgs eType="Replay" icon="7" nRep="31" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[Customer Care.Click]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="30" Source="Action1" SourceLine="6" >
+<Disp><![CDATA[Largest Multi-brand Loyalty]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T17">
+<Obj plainTxt="False" ><![CDATA[FAQs: Customer Care Queries]]></Obj>
+<Details plainTxt="False" ><![CDATA[Page]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:30]]></Time>
+<TimeTick>1676353290</TimeTick>
+<Step rID="T18">
+<Obj plainTxt="False" ><![CDATA[What are the benefits.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:30]]></Time>
+<TimeTick>1676353290</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="35" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[What are the benefits.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T19">
+<Obj plainTxt="False" ><![CDATA[What is the eligibility.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="38" Source="Action1" SourceLine="8" >
+<Disp><![CDATA[What is the eligibility.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T20">
+<Obj plainTxt="False" ><![CDATA[Who are PAYBACK partners?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="41" Source="Action1" SourceLine="9" >
+<Disp><![CDATA[Who are PAYBACK partners?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T21">
+<Obj plainTxt="False" ><![CDATA[How can I locate the store.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="44" Source="Action1" SourceLine="10" >
+<Disp><![CDATA[How can I locate the store.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T22">
+<Obj plainTxt="False" ><![CDATA[What is the number of.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="47" Source="Action1" SourceLine="11" >
+<Disp><![CDATA[What is the number of.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T23">
+<Obj plainTxt="False" ><![CDATA[How can I enrol into PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="50" Source="Action1" SourceLine="12" >
+<Disp><![CDATA[How can I enrol into PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T24">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["ABOUT PAYBACK"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:31]]></Time>
+<TimeTick>1676353291</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="53" Source="Action1" SourceLine="13" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T25">
+<Obj plainTxt="False" ><![CDATA[How long is my PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="56" Source="Action1" SourceLine="14" >
+<Disp><![CDATA[How long is my PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T26">
+<Obj plainTxt="False" ><![CDATA[What information is available.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="59" Source="Action1" SourceLine="15" >
+<Disp><![CDATA[What information is available.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T27">
+<Obj plainTxt="False" ><![CDATA[I did not receive my PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="62" Source="Action1" SourceLine="16" >
+<Disp><![CDATA[I did not receive my PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T28">
+<Obj plainTxt="False" ><![CDATA[What happens if I lose.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="65" Source="Action1" SourceLine="17" >
+<Disp><![CDATA[What happens if I lose.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T29">
+<Obj plainTxt="False" ><![CDATA[Can I get a replacement.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="68" Source="Action1" SourceLine="18" >
+<Disp><![CDATA[Can I get a replacement.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T30">
+<Obj plainTxt="False" ><![CDATA[Can I get a replacement_2.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:32]]></Time>
+<TimeTick>1676353292</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="71" Source="Action1" SourceLine="19" >
+<Disp><![CDATA[Can I get a replacement_2.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T31">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["PAYBACK CARD INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="74" Source="Action1" SourceLine="20" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T32">
+<Obj plainTxt="False" ><![CDATA[What is the benefit of.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="77" Source="Action1" SourceLine="21" >
+<Disp><![CDATA[What is the benefit of.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T33">
+<Obj plainTxt="False" ><![CDATA[If I have multiple PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="80" Source="Action1" SourceLine="22" >
+<Disp><![CDATA[If I have multiple PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T34">
+<Obj plainTxt="False" ><![CDATA[How to update my account.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="83" Source="Action1" SourceLine="23" >
+<Disp><![CDATA[How to update my account.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T35">
+<Obj plainTxt="False" ><![CDATA[How can I change my existing.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="86" Source="Action1" SourceLine="24" >
+<Disp><![CDATA[How can I change my existing.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T36">
+<Obj plainTxt="False" ><![CDATA[Can I transfer my PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="89" Source="Action1" SourceLine="25" >
+<Disp><![CDATA[Can I transfer my PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T37">
+<Obj plainTxt="False" ><![CDATA[What happens to the PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="92" Source="Action1" SourceLine="26" >
+<Disp><![CDATA[What happens to the PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T38">
+<Obj plainTxt="False" ><![CDATA[How can I cancel my PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:33]]></Time>
+<TimeTick>1676353293</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="95" Source="Action1" SourceLine="27" >
+<Disp><![CDATA[How can I cancel my PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T39">
+<Obj plainTxt="False" ><![CDATA[How to reactivate my account?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="98" Source="Action1" SourceLine="28" >
+<Disp><![CDATA[How to reactivate my account?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T40">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["ACCOUNT INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="101" Source="Action1" SourceLine="29" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T41">
+<Obj plainTxt="False" ><![CDATA[How can I redeem my PAYBACK.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="104" Source="Action1" SourceLine="30" >
+<Disp><![CDATA[How can I redeem my PAYBACK.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T42">
+<Obj plainTxt="False" ><![CDATA[How can I keep a track.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="107" Source="Action1" SourceLine="31" >
+<Disp><![CDATA[How can I keep a track.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T43">
+<Obj plainTxt="False" ><![CDATA[Can I use my PAYBACK Points.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="110" Source="Action1" SourceLine="32" >
+<Disp><![CDATA[Can I use my PAYBACK Points.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T44">
+<Obj plainTxt="False" ><![CDATA[My PAYBACK Points have.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="113" Source="Action1" SourceLine="33" >
+<Disp><![CDATA[My PAYBACK Points have.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T45">
+<Obj plainTxt="False" ><![CDATA[When will my PAYBACK Points.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:34]]></Time>
+<TimeTick>1676353294</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="116" Source="Action1" SourceLine="34" >
+<Disp><![CDATA[When will my PAYBACK Points.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T46">
+<Obj plainTxt="False" ><![CDATA[Is there a limit on earning.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="119" Source="Action1" SourceLine="35" >
+<Disp><![CDATA[Is there a limit on earning.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T47">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["POINTS INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="122" Source="Action1" SourceLine="36" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T48">
+<Obj plainTxt="False" ><![CDATA[You can choose your favourite.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="125" Source="Action1" SourceLine="37" >
+<Disp><![CDATA[You can choose your favourite.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T49">
+<Obj plainTxt="False" ><![CDATA[How long will it take.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="128" Source="Action1" SourceLine="38" >
+<Disp><![CDATA[How long will it take.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T50">
+<Obj plainTxt="False" ><![CDATA[What if incase I receive.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="131" Source="Action1" SourceLine="39" >
+<Disp><![CDATA[What if incase I receive.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T51">
+<Obj plainTxt="False" ><![CDATA[I am a Jet Privilege Miles.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="134" Source="Action1" SourceLine="40" >
+<Disp><![CDATA[I am a Jet Privilege Miles.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T52">
+<Obj plainTxt="False" ><![CDATA[I am a Miles & More member..Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="137" Source="Action1" SourceLine="41" >
+<Disp><![CDATA[I am a Miles & More member..Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T53">
+<Obj plainTxt="False" ><![CDATA[Can I cancel my redemption.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:35]]></Time>
+<TimeTick>1676353295</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="140" Source="Action1" SourceLine="42" >
+<Disp><![CDATA[Can I cancel my redemption.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T54">
+<Obj plainTxt="False" ><![CDATA[Can I request the product.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="143" Source="Action1" SourceLine="43" >
+<Disp><![CDATA[Can I request the product.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T55">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["REDEMPTION INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="146" Source="Action1" SourceLine="44" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T56">
+<Obj plainTxt="False" ><![CDATA[An eCoupon is a special.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="149" Source="Action1" SourceLine="45" >
+<Disp><![CDATA[An eCoupon is a special.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T57">
+<Obj plainTxt="False" ><![CDATA[How do I use an eCoupon?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="152" Source="Action1" SourceLine="46" >
+<Disp><![CDATA[How do I use an eCoupon?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T58">
+<Obj plainTxt="False" ><![CDATA[How do I use an eCoupon?_2.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="155" Source="Action1" SourceLine="47" >
+<Disp><![CDATA[How do I use an eCoupon?_2.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T59">
+<Obj plainTxt="False" ><![CDATA[How is an eCoupon different.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="158" Source="Action1" SourceLine="48" >
+<Disp><![CDATA[How is an eCoupon different.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T60">
+<Obj plainTxt="False" ><![CDATA[Can I pass on my eCoupons.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="161" Source="Action1" SourceLine="49" >
+<Disp><![CDATA[Can I pass on my eCoupons.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T61">
+<Obj plainTxt="False" ><![CDATA[Where can I use my eCoupon?.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="164" Source="Action1" SourceLine="50" >
+<Disp><![CDATA[Where can I use my eCoupon?.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T62">
+<Obj plainTxt="False" ><![CDATA[Can I use the same eCoupon.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:36]]></Time>
+<TimeTick>1676353296</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="167" Source="Action1" SourceLine="51" >
+<Disp><![CDATA[Can I use the same eCoupon.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T63">
+<Obj plainTxt="False" ><![CDATA[How long is an eCoupon.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="170" Source="Action1" SourceLine="52" >
+<Disp><![CDATA[How long is an eCoupon.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T64">
+<Obj plainTxt="False" ><![CDATA[When will the points be.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="173" Source="Action1" SourceLine="53" >
+<Disp><![CDATA[When will the points be.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T65">
+<Obj plainTxt="False" ><![CDATA[Can I club this eCoupon.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="176" Source="Action1" SourceLine="54" >
+<Disp><![CDATA[Can I club this eCoupon.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T66">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["BONUS COUPONS INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="179" Source="Action1" SourceLine="55" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T67">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["PAYBACK PLUS INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="182" Source="Action1" SourceLine="56" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T68">
+<Obj plainTxt="False" ><![CDATA[category.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Merge PAYBACK points to one card"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:37]]></Time>
+<TimeTick>1676353297</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="185" Source="Action1" SourceLine="57" >
+<Disp><![CDATA[category.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T69">
+<Obj plainTxt="False" ><![CDATA[card_retained.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7995758545"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="188" Source="Action1" SourceLine="58" >
+<Disp><![CDATA[card_retained.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T70">
+<Obj plainTxt="False" ><![CDATA[card_retained.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["7995758545643579"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="191" Source="Action1" SourceLine="59" >
+<Disp><![CDATA[card_retained.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T71">
+<Obj plainTxt="False" ><![CDATA[card_cancelled.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["3699543678895435"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="194" Source="Action1" SourceLine="60" >
+<Disp><![CDATA[card_cancelled.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T72">
+<Obj plainTxt="False" ><![CDATA[query_feedback.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["merge points"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="197" Source="Action1" SourceLine="61" >
+<Disp><![CDATA[query_feedback.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T73">
+<Obj plainTxt="False" ><![CDATA[Submit.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="200" Source="Action1" SourceLine="62" >
+<Disp><![CDATA[Submit.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T74">
+<Obj plainTxt="False" ><![CDATA[Submit.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:38]]></Time>
+<TimeTick>1676353298</TimeTick>
+<NodeArgs eType="Replay" icon="9" nRep="203" Source="Action1" SourceLine="63" >
+<Disp><![CDATA[Submit.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T75">
+<Obj plainTxt="False" ><![CDATA[WebElement.Click]]></Obj>
+<Details plainTxt="False" ><![CDATA[]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:39]]></Time>
+<TimeTick>1676353299</TimeTick>
+<NodeArgs eType="Replay" icon="10" nRep="206" Source="Action1" SourceLine="64" >
+<Disp><![CDATA[WebElement.Click]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T76">
+<Obj plainTxt="False" ><![CDATA[toggleTabCollapse.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["PAYBACK PLUS INFORMATION"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:40]]></Time>
+<TimeTick>1676353300</TimeTick>
+<NodeArgs eType="Replay" icon="11" nRep="209" Source="Action1" SourceLine="65" >
+<Disp><![CDATA[toggleTabCollapse.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T77">
+<Obj plainTxt="False" ><![CDATA[category.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Redemption Related"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:40]]></Time>
+<TimeTick>1676353300</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="212" Source="Action1" SourceLine="66" >
+<Disp><![CDATA[category.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T78">
+<Obj plainTxt="False" ><![CDATA[sub_category.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Need more information about a product"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:40]]></Time>
+<TimeTick>1676353300</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="215" Source="Action1" SourceLine="67" >
+<Disp><![CDATA[sub_category.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T79">
+<Obj plainTxt="False" ><![CDATA[specific_details.Select]]></Obj>
+<Details plainTxt="False" ><![CDATA["Product Name & Item Code"]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:40]]></Time>
+<TimeTick>1676353300</TimeTick>
+<NodeArgs eType="Replay" icon="12" nRep="218" Source="Action1" SourceLine="68" >
+<Disp><![CDATA[specific_details.Select]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T80">
+<Obj plainTxt="False" ><![CDATA[query_feedback.Set]]></Obj>
+<Details plainTxt="False" ><![CDATA["watch "]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:40]]></Time>
+<TimeTick>1676353300</TimeTick>
+<NodeArgs eType="Replay" icon="8" nRep="221" Source="Action1" SourceLine="69" >
+<Disp><![CDATA[query_feedback.Set]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T81">
+<Obj plainTxt="False" ><![CDATA[Submit]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object&nbsp;is&nbsp;disabled]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:41]]></Time>
+<TimeTick>1676353301</TimeTick>
+<Step rID="T82">
+<Obj plainTxt="False" ><![CDATA[Submit]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object's physical description:<br>role = <br>Mercury Class = WebButton<br>Index = 0<br>Html Tag = BUTTON<br>_xpath = //FORM[@id="customer-care-form"]/DIV[12]/BUTTON[1]<br>|Visible = -1<br>Value = Submit<br>Type = submit<br>Name = Submit<br>Html Id = <br>DHTML Class = btn pb-customer-care-submit red-button<br>acc_name = <br>]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:41]]></Time>
+<TimeTick>1676353301</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="225" status="Warning" nType="Description" Source="Action1" SourceLine="70" >
+<Disp><![CDATA[Submit]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Replay" icon="9" nRep="224" status="Failed" nType="Run Error" Source="Action1" SourceLine="70" >
+<Disp><![CDATA[Submit]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="6" nRep="34" status="Failed" Source="Action1" SourceLine="7" >
+<Disp><![CDATA[FAQs: Customer Care Queries]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="15" status="Failed" Source="Action1" SourceLine="1" >
+<Disp><![CDATA[Largest Multi-brand Loyalty_2]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T83">
+<Obj plainTxt="False" ><![CDATA[Largest Multi-brand Loyalty_2]]></Obj>
+<Details plainTxt="False" ><![CDATA[<table><tr><td><span style="text-align : left; font-size : 12px; ">Local Browser</span></td></tr></table>]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:41]]></Time>
+<TimeTick>1676353301</TimeTick>
+<Step rID="T84">
+<Obj plainTxt="False" ><![CDATA[Run Error]]></Obj>
+<Details plainTxt="False" ><![CDATA[Object is disabled<BR/>Line (71): &quot;Browser(&quot;Largest Multi-brand Loyalty_2&quot;).Page(&quot;FAQs: Customer Care Queries&quot;).WebButton(&quot;Submit&quot;).Click&quot;. ]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:41]]></Time>
+<TimeTick>1676353301</TimeTick>
+<NodeArgs eType="Replay" icon="13" nRep="227" status="Failed" Source="Action1" SourceLine="70" >
+<Disp><![CDATA[Run Error]]></Disp>
+</NodeArgs>
+</Step>
+<Step rID="T85">
+<Obj plainTxt="False" ><![CDATA[Stop Run]]></Obj>
+<Details plainTxt="False" ><![CDATA[Run stopped by user.]]></Details>
+<Time><![CDATA[14-02-2023 - 11:11:44]]></Time>
+<TimeTick>1676353304</TimeTick>
+<NodeArgs eType="General" icon="14" nRep="228" status="Information" >
+<Disp><![CDATA[Stop Run]]></Disp>
+</NodeArgs>
+</Step>
+<NodeArgs eType="Context" icon="4" nRep="226" status="Failed" Source="Action1" SourceLine="70" >
+<Disp><![CDATA[Largest Multi-brand Loyalty_2]]></Disp>
+</NodeArgs>
+</Step>
+<Summary sTime="14-02-2023 - 11:11:26" eTime="14-02-2023 - 11:11:44" passed="0" failed="2" warnings="1" ></Summary>
+<NodeArgs eType="StartAction" icon="5" nRep="12" status="Failed" >
+<Disp><![CDATA[Action1 Summary]]></Disp>
+</NodeArgs>
+</Action>
+<NodeArgs eType="StartIteration" icon="3" nRep="6" status="Failed" >
+<Disp><![CDATA[payback_1 Iteration 1 (Row 1)]]></Disp>
+</NodeArgs>
+</DIter>
+<Summary sTime="14-02-2023 - 11:11:23" eTime="14-02-2023 - 11:11:44" passed="0" failed="2" warnings="1" ></Summary>
+<NodeArgs eType="StartTest" icon="1" nRep="3" status="Failed" >
+<Disp><![CDATA[Test payback_1 Summary]]></Disp>
+</NodeArgs>
+</Doc>
+</Report>
